@@ -526,21 +526,21 @@ private:
 };
 
 
-class Flags : public flags::FlagsBase
+class Flags : public virtual flags::FlagsBase
 {
 public:
   Flags()
   {
-    add(&role,
+    add(&Flags::role,
         "role",
         "Role to use when registering.",
         "*");
 
-    add(&master,
+    add(&Flags::master,
         "master",
         "Master to connect to.");
 
-    add(&num_tasks,
+    add(&Flags::num_tasks,
         "num_tasks",
         "Number of sleep tasks to run at once. Each task is started on\n"
         "a separate machine. The scheduler will attempt to migrate tasks\n"
@@ -554,7 +554,7 @@ public:
           return None();
         });
 
-    add(&checkpoint,
+    add(&Flags::checkpoint,
         "checkpoint",
         "Whether this framework should be checkpointed.",
         false);
